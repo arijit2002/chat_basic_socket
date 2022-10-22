@@ -12,7 +12,6 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
 
-  socket.broadcast.emit('hi');
   socket.on('user joined', (newUser) => {
       console.log(newUser+' connected with ID: '+socket.id);
   })
