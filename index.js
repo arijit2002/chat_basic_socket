@@ -12,18 +12,19 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
 
-    socket.on('user joined', (newUser) => {
-        console.log(newUser+' connected with ID: '+socket.id);
-    })
+  socket.broadcast.emit('hi');
+  socket.on('user joined', (newUser) => {
+      console.log(newUser+' connected with ID: '+socket.id);
+  })
 
-    socket.on('disconnect', () => {
-        console.log('a user disconnected with ID: '+socket.id);
-    });
+  socket.on('disconnect', () => {
+      console.log('a user disconnected with ID: '+socket.id);
+  });
 
-    socket.on('chat message', (msg) => {
-        console.log('message: ' + msg);
-        io.emit('chat message', msg);
-    });
+  socket.on('chat message', (msg) => {
+      console.log('message: ' + msg);
+      io.emit('chat message', msg);
+  });
 
 });
 
